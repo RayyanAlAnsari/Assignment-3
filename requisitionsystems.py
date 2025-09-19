@@ -2,7 +2,7 @@
 This code was done using Object-oriented programming and all of the codes from previous task were combined with few changes to meet the requirements, in the output, statistics is given as output and manager can also decide wheter to Approve/Not Approve/Pending 
 '''
 class RequisitionSystem():
-#this is a class and below are empty variables with no values, which later will help us complete the statistics
+#this is a class and below are empty variables with no values, which later will help us complete the statistics (SINGLE RESPONSIBILITY can be applied here because there are many responsibilities)
     counter = 0
     staffs = []
     total_requisitions = 0
@@ -11,7 +11,7 @@ class RequisitionSystem():
     total_notapproved = 0
 
     def __init__(self):
-#this is a constructor which helps us in assigning values (Open/Closed is applied since we can make extension but no modification)
+#this is a constructor which helps us in assigning values (KISS is used here because verything is simple and straightforward)
         self.date = None
         self.staff_id = None
         self.staff_name = None
@@ -22,8 +22,7 @@ class RequisitionSystem():
         RequisitionSystem.staffs.append(self)
     
     def staff_info(self):
-#staff functions allows user to input basic staff information and assign a unique ID (YAGNI can be applied in line 40 and 45, since that line is only a cosmetic feature and its not important as of now)
-        print("Printing Staff Information: ")
+#staff functions allows user to input basic staff information and assign a unique ID (Clean and clever is used because its understandable and easy to read and maintain )
         RequisitionSystem.counter += 1
         self.date = input("Date: ")
         
@@ -45,7 +44,7 @@ class RequisitionSystem():
         print("---------------------------------------------")
 
     def requisitions_details(self): 
-#this function allows user to enter number of items and their price (clean code > clever code is used here because its easy to read and maintain)
+#this function allows user to enter number of items and their price (KISS and clean code > clever code is used here because its easy to read and maintain and its simple)
         self.cost = 0
         num_items = int(input("How many items are you buying: "))
         for i in range(num_items):
@@ -70,7 +69,7 @@ class RequisitionSystem():
             RequisitionSystem.total_approved += 1
 
     def respond_requisition(self):
-#this function allows manager to respond to all the requistions and decide whether to approve/deny a requisiton (Refactor can be used in the future for this function to improve it)   
+#this function allows manager to respond to all the requistions and decide whether to approve/deny a requisiton (REFACTOR can be used in the future for this function to improve it)   
         for staff in RequisitionSystem.staffs:
             if staff.status == "Pending":
                 decision = input("Enter decision-Approved/Not Approved/Pending: ").lower()
@@ -109,7 +108,7 @@ class RequisitionSystem():
         print(f"The total number of pending requisitions: {RequisitionSystem.total_pending}")
         print(f"The total number of not approved requisitions: {RequisitionSystem.total_notapproved}")
 
-#these are objects with instaces 
+#these are objects with instaces (DRY can be applied here in future to fix the repetition)
 r1 = RequisitionSystem()
 r1.staff_info()
 r1.requisitions_details()
@@ -139,3 +138,4 @@ r5.respond_requisition()
 r5.display_requisitions()
 
 r5.requisition_statistic()
+
